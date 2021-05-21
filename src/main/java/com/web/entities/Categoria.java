@@ -2,6 +2,9 @@ package com.web.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -24,6 +27,7 @@ public class Categoria implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Equipo
+	@JsonIgnore
 	@OneToMany(mappedBy="categoria")
 	private List<Equipo> equipos;
 
