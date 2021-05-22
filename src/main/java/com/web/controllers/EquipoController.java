@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -91,11 +90,15 @@ public class EquipoController {
 	@GetMapping("/{idEquipo}")
 	public ResponseEntity<?> listar(@PathVariable int idEquipo) {
 
+		Map<String, Object> mapa = new HashMap<String, Object>();
 		try {
 			Equipo e = equipoService.findById(idEquipo);
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("equipo", e);
-			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.FOUND);
+			if(e==null) {
+				mapa.put("mensaje", "Equipo no existe");
+				return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.NOT_FOUND);
+			}
+			mapa.put("equipo", e);
+			return new ResponseEntity<Map<String, Object>>(mapa, HttpStatus.OK);
 		} catch (DataAccessException | InternalError e) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("mensaje", "Equipo no encontrado!");
