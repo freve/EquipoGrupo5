@@ -56,5 +56,4 @@ public class EquipoServiceImpl implements EquipoService {
 		}
 		return null;
 	}
-
 }
