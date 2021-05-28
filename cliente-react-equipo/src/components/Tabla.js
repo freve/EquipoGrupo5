@@ -32,6 +32,7 @@ export function Tabla() {
       <table className="table table-bordered ">
         <thead>
           <tr>
+          <th scope="col">Escudo</th>
             <th scope="col">Nombre</th>
             <th scope="col">Dirección</th>
             <th scope="col">Ciudad</th>
@@ -43,13 +44,13 @@ export function Tabla() {
         <tbody>
           {equipos.map((item) => (
             <tr key={item.id}>
-              {/* <td>
+              <td>
                 <img
                   src={rutaBaseImg + item.escudo}
                   width="50px"
                   alt="escudo"
                 />
-              </td> */}
+              </td>
               <td>{item.nombre}</td>
               <td>{item.direccion}</td>
               <td>{item.ciudad}</td>
