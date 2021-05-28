@@ -13,6 +13,7 @@ export function Form() {
 
     req.onload = function(oEvent) {
       if (req.status === 201) {
+window.location.replace("/listar");
         console.log(req.response);
       } else {
         console.log("Status:" +req.status + "Error : "+req.response);
