@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +26,7 @@ import com.web.repository.services.EquipoService;
 import com.web.repository.services.IUploadFileService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/equipo")
 public class EquipoController {
 
@@ -53,6 +55,7 @@ public class EquipoController {
 	@PostMapping("/save/{idCategoria}")
 	public ResponseEntity<?> guardar(@PathVariable int idCategoria, @RequestParam("imagen") MultipartFile escudo,
 			@ModelAttribute Equipo equipo) {
+	
 
 		Categoria c = categoriaService.findById(idCategoria);
 
@@ -65,7 +68,6 @@ public class EquipoController {
 		String uniqueFilename = null;
 		if (!escudo.isEmpty()) {
 			try {
-				System.out.println("ENTRO ACA");
 				uniqueFilename = uploadService.copy(escudo);
 			} catch (Exception e) {
 				e.printStackTrace();
