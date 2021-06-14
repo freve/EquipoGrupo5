@@ -28,7 +28,11 @@ public class CategoriaServiceImpl implements CategoriaService {
 
 	@Override
 	public Categoria save(Categoria categoria) {
-		// TODO Auto-generated method stub
+		try {
+			return categoriaDao.save(categoria);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return null;
 	}
 
@@ -40,6 +44,17 @@ public class CategoriaServiceImpl implements CategoriaService {
 			// TODO: handle exception
 		}
 		
+		return null;
+	}
+
+	@Override
+	public String delete(int idCategoria) {
+		try {
+			categoriaDao.deleteById(idCategoria);
+			return "Categoria eliminada";
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return null;
 	}
 

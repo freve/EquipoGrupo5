@@ -11,4 +11,6 @@ public interface CategoriaService {
 	public Categoria save(Categoria categoria);
 	
 	public Categoria findById(int idCategoria);
+	
+	public String delete(int idCategoria);
 }
